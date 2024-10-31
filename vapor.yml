@@ -1,0 +1,15 @@
+id: 21193
+name: files-downloads
+environments:
+  production:
+    memory: 1024
+    cli-memory: 1024
+    runtime: 'php-8.2:al2'
+    domain: downloads.iposg.net
+    balancer: iposg-balancer
+    network: vapor-network-1589891155
+    timeout: 30
+    queue-timeout: 90
+    build:
+      - 'COMPOSER_MIRROR_PATH_REPOS=1 composer install --no-dev'
+      - 'php artisan event:cache'
